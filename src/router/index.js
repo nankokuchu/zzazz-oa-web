@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'OA审批',
+    name: 'zzazz認証',
     component: () =>
       import('../views/index.vue'),
   },
