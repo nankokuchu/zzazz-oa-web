@@ -18,5 +18,14 @@ export default {
       url: `${API_PATH}/getProcessTemplate/`+processTemplateId,
       method: 'get'
     })
-  }
+  },
+
+  // プロセスの作成
+  startUp(processFormVo) {
+    return request({
+      url: `${API_PATH}/startUp`,
+      method: 'post',
+      data: processFormVo
+    })
+  },
 }
