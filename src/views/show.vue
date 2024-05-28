@@ -101,6 +101,7 @@ export default {
     fetchData(id) {
       api.show(id).then(response => {
         this.process = response.data.process
+        console.log(response.data.process)
         this.formValues = JSON.parse(this.process.formValues)
         this.processRecordList = response.data.processRecordList
         this.isApprove = response.data.isApprove
