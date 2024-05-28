@@ -131,6 +131,10 @@ export default {
 
         this.pageNo++;
       });
+    },
+
+    info(id, taskId) {
+      this.$router.push({path: '/show/' + id + '/' + taskId})
     }
   }
 }
