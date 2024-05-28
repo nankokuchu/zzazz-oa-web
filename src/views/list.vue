@@ -17,7 +17,7 @@
         <van-list
             v-model="loading"
             :finished="finished"
-            finished-text="データがありません!!!!!!"
+            finished-text="以上です!!!!"
             @load="onLoad"
             :immediate-check="false"
         >
@@ -34,7 +34,7 @@
                       v-html="value"></span></p>
                 </div>
                 <div class="item-status">
-                  <span :class="item.status === 1 ? '审批中' : item.status === 2 ? 'pass' : 'refused'">{{
+                  <span :class="item.status === 1 ? '承認中' : item.status === 2 ? 'pass' : 'refused'">{{
                       item.status === 1 ? '承認中' : item.status === 2 ? '承認' : '否認'
                     }}</span>
                 </div>
@@ -112,20 +112,69 @@ export default {
     },
 
     findPending() {
-      api.findPending().then(response => {
+      api.findPending(this.pageNo, this.pageSize).then(response => {
+        console.log(response.data);
         if (this.refreshing) {
           this.list = [];
           this.refreshing = false;
         }
-        for (let i = 0; i < response.data.length; i++) {
-          let item = response.data[i]
+        for (let i=0;i<response.data.records.length;i++) {
+          let item = response.data.records[i]
           item.formValues = JSON.parse(item.formValues)
           this.list.push(item);
         }
         this.pages = response.data.pages;
 
         this.loading = false;
-        if (this.pageNo >= this.pages) {
+        if(this.pageNo >= this.pages) {
+          this.finished = true;
+        }
+
+        this.pageNo++;
+      });
+    },
+
+
+    findProcessed() {
+      api.findProcessed(this.pageNo, this.pageSize).then(response => {
+        console.log(response.data);
+        if (this.refreshing) {
+          this.list = [];
+          this.refreshing = false;
+        }
+        for (let i=0;i<response.data.records.length;i++) {
+          let item = response.data.records[i]
+          item.formValues = JSON.parse(item.formValues)
+          this.list.push(item);
+        }
+        this.pages = response.data.pages;
+
+        this.loading = false;
+        if(this.pageNo >= this.pages) {
+          this.finished = true;
+        }
+
+        this.pageNo++;
+      });
+    },
+
+    findStarted() {
+      console.log(this.pageNo)
+      api.findStarted(this.pageNo, this.pageSize).then(response => {
+        console.log(response.data);
+        if (this.refreshing) {
+          this.list = [];
+          this.refreshing = false;
+        }
+        for (let i=0;i<response.data.records.length;i++) {
+          let item = response.data.records[i]
+          item.formValues = JSON.parse(item.formValues)
+          this.list.push(item);
+        }
+        this.pages = response.data.pages;
+
+        this.loading = false;
+        if(this.pageNo >= this.pages) {
           this.finished = true;
         }
 

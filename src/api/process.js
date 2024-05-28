@@ -30,9 +30,9 @@ export default {
   },
 
   // 処理待ち状態のプロセスを取得
-  findPending() {
+  findPending(page, limit) {
     return request({
-      url: `${API_PATH}/findPending`,
+      url: `${API_PATH}/findPending/`+page+`/`+ limit,
       method: 'get'
     })
   },
@@ -53,4 +53,20 @@ export default {
       data: approvalVo
     })
   },
+
+  // 処理済み
+  findProcessed(page, limit) {
+    return request({
+      url: `${API_PATH}/findProcessed/`+page+`/`+ limit,
+      method: 'get'
+    })
+  },
+
+  // 申請済み
+  findStarted(page, limit) {
+    return request({
+      url: `${API_PATH}/findStarted/`+page+`/`+ limit,
+      method: 'get'
+    })
+  }
 }
