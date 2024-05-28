@@ -45,4 +45,12 @@ export default {
     })
   },
 
+  // 承認のステータスを変更（承認=1？否認=-1？）
+  approve(approvalVo) {
+    return request({
+      url: `${API_PATH}/approve`,
+      method: 'post',
+      data: approvalVo
+    })
+  },
 }
