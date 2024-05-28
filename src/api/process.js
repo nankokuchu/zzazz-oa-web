@@ -28,4 +28,21 @@ export default {
       data: processFormVo
     })
   },
+
+  // 処理待ち状態のプロセスを取得
+  findPending() {
+    return request({
+      url: `${API_PATH}/findPending`,
+      method: 'get'
+    })
+  },
+
+  // プロセスの詳細情報を取得
+  show(id) {
+    return request({
+      url: `${API_PATH}/show/`+id,
+      method: 'get'
+    })
+  },
+
 }
