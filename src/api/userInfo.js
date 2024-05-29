@@ -4,7 +4,7 @@ import request from '@/utils/request'
 export default {
   getCurrentUser() {
     return request({
-      url: `/admin/process/getCurrentUser`,
+      url: `/admin/system/sysUser/getCurrentUser`,
       method: 'get'
     })
   }
