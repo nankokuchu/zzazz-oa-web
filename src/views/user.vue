@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <van-nav-bar
-      title="基本信息"
+      title="基本情報"
     />
     <div class="detail-wrap">
       <div class="item">
